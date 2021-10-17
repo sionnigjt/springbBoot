@@ -13,19 +13,18 @@
             <input type="password" placeholder="Password" id="password" />
             <button>登录</button>
             <div class="social">
-            <a href="http://haiyong.site/moyu">
-                <div class="go">
-                    <i class="fas fa-gamepad"></i>注册
-                </div>
-            </a>
-            <a href="http://haiyong.site/contact">
-                <div class="fb">
-                    <i class="far fa-comments"></i>修改密码
-                </div>
-            </a>
-        </div>
+                <router-link to="/register">
+                    <div class="go">
+                        <i class="fas fa-gamepad"></i>注册
+                    </div>
+                </router-link>
+                <router-link to="/changePwd">
+                    <div class="fb">
+                        <i class="far fa-comments"></i>修改密码
+                    </div>
+                </router-link>
+            </div>
         </form>
-        
     </div>
 </template>
 
@@ -39,6 +38,7 @@ export default {
 
 </script>
 <style lang='scss' scoped>
+
 .background {
     width: 430px;
     height: 520px;
@@ -116,7 +116,7 @@ form h3 {
     text-align: center;
 }
 button {
-    margin-top: 40px;
+    margin-top: 35px;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
@@ -128,13 +128,19 @@ button {
 }
 .social {
     margin-top: 25px;
+    position: fixed;
     display: flex;
+    justify-content: center;
+    bottom: 20px;
+    left: 0;
+    right: 0;
 }
 .social div {
     background: red;
     width: 120px;
     border-radius: 3px;
-    padding: 5px 10px 10px 5px;
+    margin: 10px;
+    padding: 5px 8px 8px 5px;
     background-color: rgba(255, 255, 255, 0.27);
     color: #eaf0fb;
     text-align: center;
@@ -142,9 +148,7 @@ button {
 .social div:hover {
     background-color: rgba(255, 255, 255, 0.47);
 }
-.social .co {
-    margin-left: 25px;
-}
+
 .social i {
     margin-right: 4px;
 }

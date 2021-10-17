@@ -7,7 +7,7 @@
         <div class="form">
             <h3>注册</h3>
             <label for="username">用户名</label>
-            <input type="text" placeholder="Email or Phone"  />
+            <input type="text" placeholder="Your Name"  />
             <label for="password">密码</label>
             <input type="password" placeholder="Password"  />
              <label for="password">邮箱</label>
@@ -113,7 +113,7 @@ form h3 {
     text-align: center;
 }
 .button {
-    margin-top: 35px;
+    margin-top: 40px;
     width: 100%;
     background-color: #ffffff;
     color: #080710;

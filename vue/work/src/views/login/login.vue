@@ -28,10 +28,15 @@
 </template>
 
 <script>
+import { getUserAllData } from '../../store/register.js'
 export default {
     setup(props) {
         function getVerity() {
-            console.log("we");
+            getUserAllData().then(
+                res => {
+                    console.log(res);
+                }
+            )
         }
         return {
             getVerity

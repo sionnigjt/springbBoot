@@ -10,7 +10,7 @@ import java.util.List;
  * @author sion
  */
 @RestController
-@RequestMapping(value = "/login")
+@RequestMapping(value = "/api")
 public class UserController {
     private final UserService userService;
 

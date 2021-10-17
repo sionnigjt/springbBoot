@@ -10,7 +10,7 @@ public interface  UserDao {
     /**
      * 新增数据
      */
-    @Insert("insert into user(id,email,password,username) values (#{id},#{email},#{password},#{username})")
+    @Insert("insert into user(email,password,username) values (#{email},#{password},#{username})")
     void addUser(User user);
 
     /**

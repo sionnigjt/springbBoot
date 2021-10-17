@@ -5,24 +5,14 @@
     </div>
     <div class="formLogin">
         <div class="form">
-            <h3>登录</h3>
+            <h3>注册</h3>
             <label for="username">用户名</label>
-            <input type="text" placeholder="Email or Phone" id="username" />
+            <input type="text" placeholder="Email or Phone"  />
             <label for="password">密码</label>
-            <input type="password" placeholder="Password" id="password" />
-            <button type="submit" class="button" @click="getVerity()">登录</button>
-            <div class="social">
-                <router-link to="/register">
-                    <div class="go">
-                        <i class="fas fa-gamepad"></i>注册
-                    </div>
-                </router-link>
-                <router-link to="/changePwd">
-                    <div class="fb">
-                        <i class="far fa-comments"></i>修改密码
-                    </div>
-                </router-link>
-            </div>
+            <input type="password" placeholder="Password"  />
+             <label for="password">邮箱</label>
+            <input type="password" placeholder="Gmail"  />
+            <button type="submit" class="button" @click="register()">注册</button>
         </div>
     </div>
 </template>
@@ -30,11 +20,11 @@
 <script>
 export default {
     setup(props) {
-        function getVerity() {
+        function register() {
             console.log("we");
         }
         return {
-            getVerity
+            register
         }
     },
     data() {
@@ -133,30 +123,5 @@ form h3 {
     border-radius: 5px;
     cursor: pointer;
 }
-.social {
-    margin-top: 25px;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-}
-.social div {
-    background: red;
-    width: 120px;
-    border-radius: 3px;
-    margin: 10px;
-    padding: 5px 8px 8px 5px;
-    background-color: rgba(255, 255, 255, 0.27);
-    color: #eaf0fb;
-    text-align: center;
-}
-.social div:hover {
-    background-color: rgba(255, 255, 255, 0.47);
-}
 
-.social i {
-    margin-right: 4px;
-}
 </style>

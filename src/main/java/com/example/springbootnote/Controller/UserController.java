@@ -39,8 +39,7 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public User findByUserName(@RequestParam(value = "userName") String userName) {
-        System.out.println("查询名字："+userName);
-        System.out.println("查询数据"+userService.findUserByName(userName));
+        System.out.println("查询数据：");
         return userService.findUserByName(userName);
     }
 

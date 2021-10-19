@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public boolean addUser(@RequestBody  User user) {
+    public boolean addUser(@RequestBody User user) {
         System.out.println("新增数据："+user.getUsername());
         return true;
     }

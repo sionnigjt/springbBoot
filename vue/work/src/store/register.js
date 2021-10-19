@@ -4,6 +4,6 @@ export function setUserInfo(userinfo) {
     return request({
         url: '/api/user',
         method: "post",
-        userinfo
+        data: userinfo,
     })
 }

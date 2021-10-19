@@ -7,9 +7,9 @@
         <div class="form">
             <h3>登录</h3>
             <label for="username">用户名</label>
-            <input type="text" placeholder="Email or Phone" id="username" />
+            <input type="text" placeholder="Email or Phone" id="username" v-model="username" />
             <label for="password">密码</label>
-            <input type="password" placeholder="Password" id="password" />
+            <input type="password" placeholder="Password" id="password" v-model="password"/>
             <button type="submit" class="button" @click="getVerity()">登录</button>
             <div class="social">
                 <router-link to="/register">
@@ -28,15 +28,13 @@
 </template>
 
 <script>
-import { getUserAllData } from '../../store/register.js'
+import { getUserInfo } from '../../store/login'
 export default {
     setup(props) {
         function getVerity() {
-            getUserAllData().then(
-                res => {
-                    console.log(res);
-                }
-            )
+            getUserInfo().then(res => {
+                console.log(res);
+            })
         }
         return {
             getVerity

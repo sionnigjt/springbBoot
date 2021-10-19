@@ -7,30 +7,38 @@
         <div class="form">
             <h3>注册</h3>
             <label for="username">用户名</label>
-            <input type="text" placeholder="Your Name"  />
+            <input type="text" placeholder="Your Name" v-model="username" />
             <label for="password">密码</label>
-            <input type="password" placeholder="Password"  />
-             <label for="password">邮箱</label>
-            <input type="password" placeholder="Gmail"  />
+            <input type="password" placeholder="Password" v-model="password" />
+            <label for="password">邮箱</label>
+            <input type="password" placeholder="Gmail" v-model="email" />
             <button type="submit" class="button" @click="register()">注册</button>
         </div>
     </div>
 </template>
 
 <script>
+import { setUserInfo } from '../../store/register'
+import { reactive, toRefs } from 'vue'
 export default {
     setup(props) {
+        let userinfo = reactive({
+            username: "",
+            password: "",
+            email: ""
+        })
         function register() {
-            console.log("w123e");
+            setUserInfo(userinfo).then(res=>{
+                console.log(res);
+            })
+         
         }
         return {
-            register
+            register,
+            ...toRefs(userinfo)
         }
     },
-    data() {
-        return {
-        };
-    },
+
 }
 
 </script>
@@ -123,5 +131,4 @@ form h3 {
     border-radius: 5px;
     cursor: pointer;
 }
-
 </style>

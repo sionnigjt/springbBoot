@@ -1,6 +1,9 @@
 import { request } from "./request";
-export function getUserAllData() {
+export function setUserInfo(userinfo) {
+    console.log();
     return request({
-        url: 'api/userAll',
+        url: '/api/user',
+        method: "post",
+        userinfo
     })
 }

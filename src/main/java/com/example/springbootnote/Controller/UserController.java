@@ -11,6 +11,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/api")
+@CrossOrigin()
 public class UserController {
     private final UserService userService;
 
@@ -19,9 +20,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public boolean addUser(@RequestBody User user) {
-        System.out.println("新增数据：");
-        return userService.addUser(user);
+    public boolean addUser(@RequestBody  User user) {
+        System.out.println("新增数据："+user.getUsername());
+        return true;
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)

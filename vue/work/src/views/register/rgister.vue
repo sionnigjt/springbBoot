@@ -21,7 +21,7 @@
 export default {
     setup(props) {
         function register() {
-            console.log("we");
+            console.log("w123e");
         }
         return {
             register

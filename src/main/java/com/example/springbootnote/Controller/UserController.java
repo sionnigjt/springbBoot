@@ -20,9 +20,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public boolean addUser(@RequestBody User user) {
+    public String addUser(@RequestBody User user) {
         System.out.println("新增数据："+user.getUsername());
-        return true;
+        String token=" there is a token";
+        token=token.toUpperCase();
+        return token;
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
@@ -45,8 +47,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userAll", method = RequestMethod.GET)
-    public List<User> findByUserAge() {
+    public List<User> findByUserAge(String token) {
         System.out.println("查询所有数据:");
+        System.out.println(token);
         return userService.findAll();
     }
 }

@@ -22,10 +22,9 @@ public interface UserService {
     boolean deleteUser(int id);
 
     /**
-     * 根据名字查询用户信
+     * 根据名字查询用户信息
      */
     User findUserByName(String userName);
-
 
     /**
      * 查询所有数据

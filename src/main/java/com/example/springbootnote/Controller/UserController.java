@@ -19,7 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     public String addUser(@RequestBody User user) {
         System.out.println("新增数据："+user.getUsername());
         String token=" there is a token";
@@ -40,14 +40,20 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public User findByUserName(@RequestParam(value = "userName") String userName) {
-        System.out.println("查询数据：");
-        return userService.findUserByName(userName);
+    @RequestMapping(value = "/userByName", method = RequestMethod.GET)
+    public User findByUserName(@RequestParam(value = "username") String username) {
+        System.out.println("查询数据："+username);
+        return userService.findUserByName(username);
     }
-
+    @RequestMapping(value = "/verityUser", method = RequestMethod.POST)
+    public String verityUser(@RequestBody User user) {
+        System.out.println("验证数据："+user.getUsername()+user.getPassword());
+        if (!user.getPassword().isEmpty()&&user.getPassword().equals(userService.findUserByName(user.getUsername()).getPassword()))
+            return "token";
+        return "no token";
+    }
     @RequestMapping(value = "/userAll", method = RequestMethod.GET)
-    public List<User> findByUserAge(String token) {
+    public List<User> findByUser(@RequestHeader String token) {
         System.out.println("查询所有数据:");
         System.out.println(token);
         return userService.findAll();

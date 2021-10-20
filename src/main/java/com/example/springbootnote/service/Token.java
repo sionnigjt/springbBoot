@@ -1,5 +1,5 @@
 package com.example.springbootnote.service;
 
-public interface verity {
+public class Token {
 
 }

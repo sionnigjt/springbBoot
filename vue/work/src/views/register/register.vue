@@ -30,8 +30,6 @@ export default {
         function register() {
             setUserInfo(userinfo).then(res => {
                 console.log(res.data);
-                window.sessionStorage.setItem("token", res.data)
-                console.log(window.sessionStorage.getItem('token'));
             })
 
         }

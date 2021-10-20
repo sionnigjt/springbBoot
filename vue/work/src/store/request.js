@@ -4,15 +4,30 @@ export function request(config) {
     baseURL: 'http://localhost:3000',
     timeout: 5000,
   })
-  instance.interceptors.request.use(config => {
-    //认证访问
-    //直接访问
-    return config
-  },
-    err => {
+
+  instance.interceptors.request.use(
+    //请求拦截
+    config => {
+      //认证拦截
+      if (window.sessionStorage.getItem('token')) {
+        config.headers.token = window.sessionStorage.getItem('token')
+        console.log("拦截的" + window.sessionStorage.getItem('token'));
+      }
+      return config
+    },
+    error => {
+
+    })
+
+  instance.interceptors.response.use(
+    config => {
+     
+      
+      return config;
+    },
+    error => {
       //错误处理
-      console.log(err)
-    }
-  )
+      return Promise.reject(error);
+    })
   return instance(config)
 }

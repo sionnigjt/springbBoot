@@ -9,7 +9,7 @@
             <label for="username">用户名</label>
             <input type="text" placeholder="Email or Phone" id="username" v-model="username" />
             <label for="password">密码</label>
-            <input type="password" placeholder="Password" id="password" v-model="password"/>
+            <input type="password" placeholder="Password" id="password" v-model="password" />
             <button type="submit" class="button" @click="getVerity()">登录</button>
             <div class="social">
                 <router-link to="/register">
@@ -28,16 +28,28 @@
 </template>
 
 <script>
-import { getUserInfo } from '../../store/login'
+import { getUserInfoByName, verityUser } from '../../store/login'
+import { ref, reactive, toRefs } from 'vue'
 export default {
     setup(props) {
+
+        let userinfo = reactive({
+            username: "",
+            password: "",
+        })
+
         function getVerity() {
-            getUserInfo().then(res => {
+            //验证参数
+            //验证登录
+            verityUser(userinfo).then(res => {
                 console.log(res);
+                window.sessionStorage.setItem("token", res.data)
+                console.log(window.sessionStorage.getItem('token'));
             })
         }
         return {
-            getVerity
+            getVerity,
+            ...toRefs(userinfo)
         }
     },
     data() {
@@ -135,6 +147,9 @@ form h3 {
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
+}
+.button:active {
+    background-color: #978d8d;
 }
 .social {
     margin-top: 25px;

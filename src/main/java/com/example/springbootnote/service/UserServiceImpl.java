@@ -47,7 +47,18 @@ public class UserServiceImpl  implements  UserService{
         }
         return flag;
     }
-
+    @Override
+    public boolean verityByName(String userName){
+        boolean  flag=false;
+        try {
+           if (userDao.findByName(userName)!=null)
+            flag=true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return  flag;
+    }
     @Override
     public User findUserByName(String userName) {
         return userDao.findByName(userName);

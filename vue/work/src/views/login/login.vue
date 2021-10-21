@@ -28,8 +28,9 @@
 </template>
 
 <script>
-import { getUserInfoByName, verityUser } from '../../store/login'
+import {  verityUser } from '../../store/login'
 import { ref, reactive, toRefs } from 'vue'
+import VueRouter from 'vue-router'
 export default {
     setup(props) {
 
@@ -45,6 +46,7 @@ export default {
                 console.log(res);
                 window.sessionStorage.setItem("token", res.data)
                 console.log(window.sessionStorage.getItem('token'));
+                
             })
         }
         return {

@@ -11,7 +11,7 @@ export function request(config) {
       //认证拦截
       if (window.sessionStorage.getItem('token')) {
         config.headers.token = window.sessionStorage.getItem('token')
-        console.log("拦截的" + window.sessionStorage.getItem('token'));
+        console.log("请求添加token值" + window.sessionStorage.getItem('token'));
       }
       return config
     },

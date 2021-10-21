@@ -25,7 +25,7 @@ public interface UserService {
      * 根据名字查询用户信息
      */
     User findUserByName(String userName);
-
+    boolean verityByName(String userName);
     /**
      * 查询所有数据
      */

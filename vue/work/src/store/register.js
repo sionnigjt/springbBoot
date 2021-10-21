@@ -7,3 +7,10 @@ export function setUserInfo(userinfo) {
         data: userinfo,
     })
 }
+export function getUserInfoByName(name) {
+    return request({
+        url: '/api/verityByName',
+        method: "get",
+        params: { "username": name }
+    })
+}

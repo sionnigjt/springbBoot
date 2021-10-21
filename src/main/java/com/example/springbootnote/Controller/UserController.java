@@ -20,20 +20,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String addUser(@RequestBody User user) {
+    public Boolean addUser(@RequestBody User user) {
         System.out.println("新增数据："+user.getUsername());
-        String token=" there is a token";
-        token=token.toUpperCase();
-        return token;
+        return userService.addUser(user);
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    @RequestMapping(value = "/changeUser", method = RequestMethod.PUT)
     public boolean updateUser(@RequestBody User user) {
         System.out.println("更新数据：");
         return userService.updateUser(user);
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
     public boolean delete(@RequestParam(value = "id") int id) {
         System.out.println("删除数据：");
         return userService.deleteUser(id);
@@ -45,10 +43,18 @@ public class UserController {
         System.out.println("查询数据："+username);
         return userService.findUserByName(username);
     }
+
+    @RequestMapping(value = "/verityByName", method = RequestMethod.GET)
+    public boolean verityByUserName(@RequestParam(value = "username") String username) {
+        System.out.println("验证用户名字："+username);
+        return  userService.verityByName(username);
+    }
+
+
     @RequestMapping(value = "/verityUser", method = RequestMethod.POST)
     public String verityUser(@RequestBody User user) {
         System.out.println("验证数据："+user.getUsername()+user.getPassword());
-        if (!user.getPassword().isEmpty()&&user.getPassword().equals(userService.findUserByName(user.getUsername()).getPassword()))
+        if (!user.getPassword().isEmpty()&&user.getPassword().equals(userService.findUserByName(user.getUsername())!=null?userService.findUserByName(user.getUsername()).getPassword():null))
             return "token";
         return "no token";
     }

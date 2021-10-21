@@ -11,15 +11,17 @@
             <label for="password">密码</label>
             <input type="password" placeholder="Password" v-model="password" />
             <label for="password">邮箱</label>
-            <input type="password" placeholder="Gmail" v-model="email" />
+            <input type="email" placeholder="Gmail" v-model="email" />
             <button type="submit" class="button" @click="register()">注册</button>
         </div>
     </div>
 </template>
 
 <script>
-import { setUserInfo } from '../../store/register'
+import { setUserInfo, getUserInfoByName } from '../../store/register'
 import { reactive, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
+import { Toast } from 'vant'
 export default {
     setup(props) {
         let userinfo = reactive({
@@ -27,16 +29,48 @@ export default {
             password: "",
             email: ""
         })
+        let router = useRouter()
         function register() {
-            setUserInfo(userinfo).then(res => {
-                console.log(res.data);
-            })
+            //校验参数
+            if (verityParams(userinfo) == true) {
+                getUserInfoByName(userinfo.username).then(res => {
+                    //验证用户是否存在
+                    if (res.data == false) {
+                        setUserInfo(userinfo).then(res => {
+                            if (res.data == true) {
+                                console.log("插入成功");
+                                Toast("插入成功")
+                                router.push("/login")
+                            }
+                            else console.log("插入失败");
+                        })
+                    }
+                    else {
+                        console.log("用户已存在");
+                    }
+                })
+            }
+            else {
+                console.log("参数有误");
+            }
 
+
+
+        }
+        //验证邮箱等参数
+        function verityParams(userinfo) {
+            var re = new RegExp(".*?");
+            console.log(re.test(userinfo.password));
+            return re.test(userinfo.password)
         }
         return {
             register,
             ...toRefs(userinfo)
         }
+    },
+    methods: {
+
+
     },
 
 }

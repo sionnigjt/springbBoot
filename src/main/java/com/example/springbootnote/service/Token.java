@@ -1,5 +1,2 @@
-package com.example.springbootnote.service;
-
-public class Token {
-
+package com.example.springbootnote.service;public interface Token {
 }

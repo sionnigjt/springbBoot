@@ -39,10 +39,18 @@ export default {
                         setUserInfo(userinfo).then(res => {
                             if (res.data == true) {
                                 console.log("插入成功");
-                                Toast("插入成功")
-                                router.push("/login")
+                                Toast("注册成功,2s后自动跳转登录界面")
+                                sleep(2000).then(
+                                    () => {
+                                        router.push("/login")
+                                    }
+                                )
+
                             }
-                            else console.log("插入失败");
+                            else {
+                                console.log("插入失败");
+                                Toast("注册失败")
+                            }
                         })
                     }
                     else {
@@ -60,8 +68,13 @@ export default {
         //验证邮箱等参数
         function verityParams(userinfo) {
             var re = new RegExp(".*?");
-            console.log(re.test(userinfo.password));
+            // console.log(re.test(userinfo.password));
             return re.test(userinfo.password)
+        }
+
+        //sleep函数
+        function sleep(time) {
+            return new Promise(res => setTimeout(res, time))
         }
         return {
             register,

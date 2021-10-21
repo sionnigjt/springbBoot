@@ -1,5 +1,5 @@
 package com.example.springbootnote.service;
 
-public class Token {
+public class TokenImp {
 
 }

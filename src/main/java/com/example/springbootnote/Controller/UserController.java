@@ -52,7 +52,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/verityUser", method = RequestMethod.POST)
-    public String verityUser(@RequestBody User user) {
+    public String verityUser(@RequestBody User user ) {
         System.out.println("验证数据："+user.getUsername()+user.getPassword());
         if (!user.getPassword().isEmpty()&&user.getPassword().equals(userService.findUserByName(user.getUsername())!=null?userService.findUserByName(user.getUsername()).getPassword():null))
             return "token";

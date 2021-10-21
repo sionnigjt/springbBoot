@@ -14,3 +14,11 @@ export function getUserInfoByName(name) {
         params: { "username": name }
     })
 }
+export function changeUserInfo(userinfo) {
+    console.log();
+    return request({
+        url: '/api/changeUser',
+        method: "put",
+        data: userinfo,
+    })
+}

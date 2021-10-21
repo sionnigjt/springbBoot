@@ -5,21 +5,19 @@
     </div>
     <div class="formLogin">
         <div class="form">
-            <h3>注册</h3>
+            <h3>更改密码</h3>
             <label for="username">用户名</label>
             <input type="text" placeholder="Your Name" v-model="username" />
-            <label for="password">密码</label>
+            <label for="password">新密码</label>
             <input type="password" placeholder="Password" v-model="password" />
-            <label for="password">邮箱</label>
-            <input type="email" placeholder="Gmail" v-model="email" />
-            <button type="submit" class="button" @click="register()">注册</button>
+            <button type="submit" class="button" @click="register()">更改密码</button>
         </div>
     </div>
 </template>
 
 <script>
-import { setUserInfo, getUserInfoByName } from '../../store/register'
-import { reactive, toRefs ,watch} from 'vue'
+import { changeUserInfo, getUserInfoByName } from '../../../store/register'
+import { reactive, toRefs, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { Toast } from 'vant'
 export default {
@@ -27,49 +25,34 @@ export default {
         let userinfo = reactive({
             username: "",
             password: "",
-            email: ""
         })
         let router = useRouter()
         function register() {
-            //校验参数
-            if (verityParams(userinfo) == true) {
-                getUserInfoByName(userinfo.username).then(res => {
-                    //验证用户是否存在
-                    if (res.data == false) {
-                        setUserInfo(userinfo).then(res => {
-                            if (res.data == true) {
-                                console.log("插入成功");
-                                Toast("注册成功,2s后自动跳转登录界面")
-                                sleep(2000).then(
-                                    () => {
-                                        router.push("/login")
-                                    }
-                                )
-
-                            }
-                            else {
-                                console.log("插入失败");
-                                Toast("注册失败")
-                            }
-                        })
-                    }
-                    else {
-                        console.log("用户已存在");
-                    }
-                })
-            }
-            else {
-                console.log("参数有误");
-                Toast("邮箱格式有误")
-            }
+            getUserInfoByName(userinfo.username).then(res => {
+                //验证用户是否存在
+                if (res.data == true) {
+                    changeUserInfo(userinfo).then(res => {
+                        if (res.data == true) {
+                            console.log("插入成功");
+                            Toast("注册成功,2s后自动跳转登录界面")
+                            sleep(2000).then(
+                                () => {
+                                    router.push("/login")
+                                }
+                            )
+                        }
+                        else {
+                            console.log("插入失败");
+                            Toast("注册失败")
+                        }
+                    })
+                }
+                else {
+                    console.log("用户不存在");
+                }
+            })
 
 
-
-        }
-        //验证邮箱等参数
-        function verityParams(userinfo) {
-            var re = new RegExp(/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/);
-            return re.test(userinfo.email)
         }
 
         //sleep函数

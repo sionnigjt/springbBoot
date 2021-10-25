@@ -56,7 +56,7 @@ public class UserController {
         System.out.println("验证数据："+user.getUsername()+user.getPassword());
         if (!user.getPassword().isEmpty()&&user.getPassword().equals(userService.findUserByName(user.getUsername())!=null?userService.findUserByName(user.getUsername()).getPassword():null))
             return "token";
-        return "no token";
+        return "false";
     }
     @RequestMapping(value = "/userAll", method = RequestMethod.GET)
     public List<User> findByUser(@RequestHeader String token) {

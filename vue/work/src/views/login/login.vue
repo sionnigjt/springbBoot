@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import {  verityUser } from '../../store/login'
+import { verityUser } from '../../store/login'
 import { ref, reactive, toRefs } from 'vue'
-import VueRouter from 'vue-router'
+import { useRouter } from 'vue-router'
 export default {
     setup(props) {
 
@@ -38,15 +38,22 @@ export default {
             username: "",
             password: "",
         })
-
+        let router=useRouter()
         function getVerity() {
             //验证参数
             //验证登录
             verityUser(userinfo).then(res => {
                 console.log(res);
-                window.sessionStorage.setItem("token", res.data)
-                console.log(window.sessionStorage.getItem('token'));
-                
+                if (res == "false") {
+                    Toast("账户或者密码有误")
+                }
+                else {
+                    window.sessionStorage.setItem("token", res.data)
+                    console.log(window.sessionStorage.getItem('token'));
+                    router.push('/home')
+                }
+
+
             })
         }
         return {

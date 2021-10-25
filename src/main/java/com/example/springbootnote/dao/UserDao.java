@@ -16,7 +16,7 @@ public interface  UserDao {
     /**
      * 修改数据
      */
-    @Update("update user set username=#{username},password=#{password} where id=#{id}")
+    @Update("update user set username=#{username},password=#{password} where username=#{username}")
     void updateUser(User user);
 
     /**

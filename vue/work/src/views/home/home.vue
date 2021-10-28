@@ -1,6 +1,7 @@
 <template>
     <div>home</div>
     <van-button type="primary" @click="getData">主要按钮</van-button>
+     <el-button type="primary">Primary</el-button>
 </template>
 
 <script>
